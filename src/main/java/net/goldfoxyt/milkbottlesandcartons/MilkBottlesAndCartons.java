@@ -1,8 +1,10 @@
 package net.goldfoxyt.milkbottlesandcartons;
 
+//import net.goldfoxyt.milkbottlesandcartons.event.ForgeMilkEvent;
+
+import com.mojang.logging.LogUtils;
 import net.goldfoxyt.milkbottlesandcartons.event.ForgeMilkEvent;
 import net.goldfoxyt.milkbottlesandcartons.item.ModItems;
-import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,6 +51,8 @@ public class MilkBottlesAndCartons {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS){
             event.accept(ModItems.MILK_BOTTLE);
+            event.accept(ModItems.MILK_CARTON);
+            event.accept(ModItems.EMPTY_MILK_CARTON);
         }
     }
 

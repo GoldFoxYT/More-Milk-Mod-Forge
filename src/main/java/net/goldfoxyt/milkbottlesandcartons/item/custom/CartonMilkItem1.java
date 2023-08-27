@@ -1,5 +1,6 @@
-package net.goldfoxyt.milkbottlesandcartons.item;
+package net.goldfoxyt.milkbottlesandcartons.item.custom;
 
+import net.goldfoxyt.milkbottlesandcartons.item.ModItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
@@ -7,13 +8,16 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-public class BottleMilkItem extends Item {
+public class CartonMilkItem1 extends Item {
     private static final int DRINK_DURATION = 32;
 
-    public BottleMilkItem(Item.Properties pProperties) {
+    public CartonMilkItem1(Properties pProperties) {
         super(pProperties);
     }
 
@@ -32,7 +36,7 @@ public class BottleMilkItem extends Item {
             pStack.shrink(1);
         }
 
-        return pStack.isEmpty() ? new ItemStack(Items.GLASS_BOTTLE) : pStack;
+        return pStack.isEmpty() ? new ItemStack(ModItems.MILK_CARTON2.get()) : pStack;
     }
 
     /**

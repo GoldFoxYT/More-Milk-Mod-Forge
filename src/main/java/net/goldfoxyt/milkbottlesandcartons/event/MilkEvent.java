@@ -13,14 +13,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 
 public class MilkEvent {
-    public static InteractionResult onEntityInteract(Player player, Level world, InteractionHand hand, Entity target, EntityHitResult hitResult) {
+    public static InteractionResult onEntityInteract(Player player, Level world, InteractionHand hand, Entity entity, EntityHitResult hitResult) {
         if (world.isClientSide) {
             return InteractionResult.PASS;
         }
 
+
         ItemStack itemstack = player.getItemInHand(hand);
         if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
-            if (EntityFunctions.isMilkable(target)) {
+            if (EntityFunctions.isMilkable(entity)) {
                 player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
                 itemstack.shrink(1);
 

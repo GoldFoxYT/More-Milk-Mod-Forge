@@ -29,9 +29,9 @@ public class MilkBottlesAndCartons {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::loadComplete);
 
+        setGlobalConstants();
+
         ModItems.register(modEventBus);
-
-
 
         modEventBus.addListener(this::commonSetup);
 
@@ -41,6 +41,10 @@ public class MilkBottlesAndCartons {
 
     private void loadComplete(final FMLLoadCompleteEvent event) {
         MinecraftForge.EVENT_BUS.register(new ForgeMilkEvent());
+    }
+
+    private static void setGlobalConstants() {
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

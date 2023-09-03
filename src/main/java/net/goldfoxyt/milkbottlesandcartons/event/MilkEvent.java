@@ -2,6 +2,7 @@ package net.goldfoxyt.milkbottlesandcartons.event;
 
 import net.goldfoxyt.milkbottlesandcartons.item.ModItems;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -23,7 +24,8 @@ public class MilkEvent {
         ItemStack itemstack = player.getItemInHand(hand);
         if (itemstack.getItem().equals(Items.GLASS_BOTTLE)) {
             if (isMilkable(entity)) {
-                player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+//                player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+                world.playSound(null, player.getOnPos(), SoundEvents.COW_MILK, SoundSource.PLAYERS, 1f, 1f);
                 itemstack.shrink(1);
 
                 if (itemstack.isEmpty()) {

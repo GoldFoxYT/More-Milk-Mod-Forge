@@ -26,7 +26,7 @@ public class CartonMilkItem5 extends Item {
      * the Item before the action is complete.
      */
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        if (!pLevel.isClientSide) pEntityLiving.curePotionEffects(pStack); // FORGE - move up so stack.shrink does not turn stack into air
+        if (!pLevel.isClientSide) pEntityLiving.removeAllEffects(); // FORGE - move up so stack.shrink does not turn stack into air
         if (pEntityLiving instanceof ServerPlayer serverplayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, pStack);
             serverplayer.awardStat(Stats.ITEM_USED.get(this));
@@ -61,8 +61,8 @@ public class CartonMilkItem5 extends Item {
         return ItemUtils.startUsingInstantly(pLevel, pPlayer, pHand);
     }
 
-    @Override
-    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack, @org.jetbrains.annotations.Nullable net.minecraft.nbt.CompoundTag nbt) {
-        return new net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper(stack);
-    }
+//    @Override
+//    public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack, @org.jetbrains.annotations.Nullable net.minecraft.nbt.CompoundTag nbt) {
+//        return new net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper(stack);
+//    }
 }

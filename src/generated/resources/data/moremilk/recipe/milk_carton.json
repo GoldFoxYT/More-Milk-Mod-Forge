@@ -15,7 +15,7 @@
     "AXA"
   ],
   "result": {
-    "item": "moremilk:milk_carton"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "moremilk:milk_carton"
+  }
 }

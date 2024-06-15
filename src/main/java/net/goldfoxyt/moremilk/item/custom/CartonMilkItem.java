@@ -3,7 +3,6 @@ package net.goldfoxyt.moremilk.item.custom;
 import net.goldfoxyt.moremilk.item.ModItems;
 import net.goldfoxyt.moremilk.item.custom.interfaces.ICapabilityProvider;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -12,10 +11,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 public class CartonMilkItem extends Item implements ICapabilityProvider {
     private static final int DRINK_DURATION = 32;
+    private int durability =6;
+    private int drinkCounter = 0;
 
     public CartonMilkItem(Item.Properties pProperties) {
         super(pProperties);
@@ -27,21 +27,23 @@ public class CartonMilkItem extends Item implements ICapabilityProvider {
      */
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        if (pEntityLiving instanceof ServerPlayer $$3) {
-            CriteriaTriggers.CONSUME_ITEM.trigger($$3, pStack);
-            $$3.awardStat(Stats.ITEM_USED.get(this));
+        if (pEntityLiving instanceof ServerPlayer serverPlayer) {
+            if(drinkCounter < durability - 1){
+                drinkCounter++;
+            }else {
+                ItemStack emptyCarton = new ItemStack(ModItems.EMPTY_MILK_CARTON.get());
+                pEntityLiving.setItemInHand(InteractionHand.MAIN_HAND, emptyCarton);
+                drinkCounter = 0;
+            }
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, pStack);
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
         if (!pLevel.isClientSide) {
             pEntityLiving.removeAllEffects();
         }
 
-        if (pEntityLiving instanceof Player $$4) {
-            return ItemUtils.createFilledResult(pStack, $$4, new ItemStack(ModItems.MILK_CARTON1.get()), false);
-        } else {
-            pStack.consume(1, pEntityLiving);
-            return pStack;
-        }
+        return pStack;
     }
 
     /**

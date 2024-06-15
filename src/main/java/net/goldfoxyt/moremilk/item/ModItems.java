@@ -18,7 +18,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, MoreMilk.MOD_ID);
 
     public static final RegistryObject<Item> MILK_BOTTLE = ITEMS.register("milk_bottle",
-            () -> new MilkBottleItem(new Item.Properties().stacksTo(1)));
+            () -> new BottleMilkItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> MILK_CARTON = ITEMS.register("milk_carton",
             () -> new CartonMilkItem(new Item.Properties().stacksTo(1)));
 

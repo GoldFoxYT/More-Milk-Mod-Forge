@@ -1,6 +1,7 @@
 package net.goldfoxyt.moremilk.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.goldfoxyt.moremilk.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -183,7 +184,7 @@ public class BananaCropBlock extends BushBlock implements BonemealableBlock {
     }
 
     protected ItemLike getBaseSeedId() {
-        return Items.WHEAT_SEEDS;
+        return ModItems.BANANA_SEEDS.get();
     }
 
     @Override

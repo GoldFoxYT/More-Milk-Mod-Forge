@@ -1,9 +1,7 @@
 package net.goldfoxyt.moremilk.item.custom;
 
-import net.goldfoxyt.moremilk.item.ModItems;
 import net.goldfoxyt.moremilk.item.custom.interfaces.ICapabilityProvider;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -12,13 +10,16 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Consumer;
 
 public class BottleMilkItem extends Item implements ICapabilityProvider {
     private static final int DRINK_DURATION = 32;
+    private final Consumer<LivingEntity> effect;
 
-    public BottleMilkItem(Item.Properties pProperties) {
+    public BottleMilkItem(Item.Properties pProperties, Consumer<LivingEntity> effect) {
         super(pProperties);
+        this.effect = effect;
     }
 
     /**
@@ -34,6 +35,7 @@ public class BottleMilkItem extends Item implements ICapabilityProvider {
 
         if (!pLevel.isClientSide) {
             pEntityLiving.removeAllEffects();
+            effect.accept(pEntityLiving);
         }
 
         if (pEntityLiving instanceof Player $$4) {
@@ -43,6 +45,7 @@ public class BottleMilkItem extends Item implements ICapabilityProvider {
             return pStack;
         }
     }
+
 
     /**
      * How long it takes to use or consume an item

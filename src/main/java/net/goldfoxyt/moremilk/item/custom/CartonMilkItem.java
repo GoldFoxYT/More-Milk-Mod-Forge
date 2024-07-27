@@ -14,8 +14,8 @@ import net.minecraft.world.level.Level;
 
 public class CartonMilkItem extends Item implements ICapabilityProvider {
     private static final int DRINK_DURATION = 32;
-    private int durability =6;
-    private int drinkCounter = 0;
+    public int durability = 6;
+    public int drinkCounter = 0;
 
     public CartonMilkItem(Item.Properties pProperties) {
         super(pProperties);
